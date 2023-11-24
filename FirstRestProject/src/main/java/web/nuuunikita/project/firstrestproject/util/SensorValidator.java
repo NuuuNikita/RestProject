@@ -3,6 +3,7 @@ package web.nuuunikita.project.firstrestproject.util;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import web.nuuunikita.project.firstrestproject.dto.SensorDTO;
 import web.nuuunikita.project.firstrestproject.models.Sensor;
 import web.nuuunikita.project.firstrestproject.services.SensorService;
 
@@ -27,7 +28,7 @@ public class SensorValidator implements Validator {
         if(sensor.getName() == null) return;
 
         if(sensorService.findSensor(sensor).isPresent()){
-            errors.rejectValue("name", "A sensor with this name is already registered");
+            errors.rejectValue("name", "A sensorDTO with this name is already registered");
         }
     }
 }

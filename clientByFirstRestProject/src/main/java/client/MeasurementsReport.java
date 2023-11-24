@@ -25,10 +25,10 @@ public class MeasurementsReport {
 
         MeasurementsResponse jsonResponse = restTemplate.getForObject(url, MeasurementsResponse.class);
 
-        if (jsonResponse == null || jsonResponse.getMeasurementDTOS() == null)
+        if (jsonResponse == null || jsonResponse.getMeasurementsDTO() == null)
             return Collections.emptyList();
 
-        return jsonResponse.getMeasurementDTOS().stream().map(MeasurementDTO::getTemperature)
+        return jsonResponse.getMeasurementsDTO().stream().map(MeasurementDTO::getTemperature)
                 .collect(Collectors.toList());
     }
 

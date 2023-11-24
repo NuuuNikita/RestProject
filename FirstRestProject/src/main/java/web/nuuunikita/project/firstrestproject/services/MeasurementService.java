@@ -1,6 +1,6 @@
 package web.nuuunikita.project.firstrestproject.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.nuuunikita.project.firstrestproject.models.Measurement;
@@ -12,16 +12,11 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MeasurementService {
     private final MeasurementRepository measurementRepository;
     private final SensorRepository sensorRepository;
-
-    @Autowired
-    public MeasurementService(MeasurementRepository measurementRepository, SensorRepository sensorRepository) {
-        this.measurementRepository = measurementRepository;
-        this.sensorRepository = sensorRepository;
-    }
 
     public List<Measurement> getMeasurements(){
         return measurementRepository.findAll();
@@ -36,5 +31,18 @@ public class MeasurementService {
     private void enrichMeasurement(Measurement measurement){
         measurement.setSensor(sensorRepository.findSensorByName(measurement.getSensor().getName()));
         measurement.setFixedIn(new Date());
+    }
+
+    public long getCountRainyDay(){
+        return measurementRepository.findAll().stream()
+                .filter(Measurement::isRaining)
+                .count();
+    }
+
+    public double getAvgTemperature(){
+        return measurementRepository.findAll().stream()
+                .mapToDouble(Measurement::getTemperature)
+                .summaryStatistics()
+                .getAverage();
     }
 }

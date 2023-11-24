@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import web.nuuunikita.project.firstrestproject.dto.MeasurementDTO;
 import web.nuuunikita.project.firstrestproject.models.Measurement;
 import web.nuuunikita.project.firstrestproject.services.SensorService;
 
@@ -30,6 +31,6 @@ public class MeasurementValidator implements Validator {
         }
 
         if (sensorService.findSensor(measurement.getSensor()).isEmpty())
-            errors.rejectValue("sensor", "Sensor is not registration");
+            errors.rejectValue("sensorDTO", "Sensor is not registration");
     }
 }

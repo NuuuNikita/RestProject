@@ -6,9 +6,9 @@ import lombok.Setter;
 import java.util.List;
 @Setter @Getter
 public class MeasurementResponse {
-    private List<MeasurementDTO> measurementDTOS;
+    private List<MeasurementDTO> measurementsDTO;
 
-    public MeasurementResponse(List<MeasurementDTO> measurementDTOS) {
-        this.measurementDTOS = measurementDTOS;
+    public MeasurementResponse(List<MeasurementDTO> measurementsDTO) {
+        this.measurementsDTO = measurementsDTO;
     }
 }

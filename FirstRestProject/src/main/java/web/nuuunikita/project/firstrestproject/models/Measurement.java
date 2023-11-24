@@ -39,6 +39,11 @@ public class Measurement {
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
     private Sensor sensor;
 
+    public Measurement(double temperature, boolean raining) {
+        this.temperature = temperature;
+        this.raining = raining;
+    }
+
     @Override
     public String toString() {
         return "Measurement{" +
@@ -46,7 +51,7 @@ public class Measurement {
                 ", temperature=" + temperature +
                 ", isRaining=" + raining +
                 ", fixedIn=" + fixedIn +
-                ", sensor=" + sensor +
+                ", sensorDTO=" + sensor +
                 '}';
     }
 }

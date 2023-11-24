@@ -29,6 +29,10 @@ public class Sensor {
     @JsonManagedReference
     private List<Measurement> measurements;
 
+    public Sensor(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Sensor{" +
